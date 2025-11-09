@@ -1,0 +1,113 @@
+from pathlib import Path
+
+html = """<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Corse-Matin — Vincent Fontana, 50 ans | 4 juillet 2026</title>
+<style>
+  :root{
+    --bg:#ffffff; --accent:#b21f2d; --text:#111;
+    --muted:#6b6b6b; --serif: Georgia, "Times New Roman", serif;
+    --sans: "Helvetica Neue", Arial, sans-serif;
+  }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  .container{max-width:720px;margin:0 auto;border-left:8px solid #eee;border-right:8px solid #eee;box-shadow:none;}
+  
+  /* Header / logo */
+  header{display:flex;align-items:center;padding:12px 16px;background:#fff;}
+  .logo img{height:70px;width:auto;margin-right:12px;display:block;} /* Logo plus grand */
+  .edition{margin-left:auto;font-size:12px;color:var(--muted);text-align:right;line-height:1.1;}
+  
+  /* Banner */
+  .banner-wrap{position:relative;overflow:hidden;}
+  .banner{
+    width:100%;height:260px;object-fit:cover;display:block;
+    opacity:0;animation:fadeIn 900ms ease-out forwards;
+  }
+  .banner-overlay{
+    position:absolute;left:0;top:0;right:0;bottom:0;
+    background:linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.28) 50%, rgba(0,0,0,0.36) 100%);
+    pointer-events:none;
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media(min-width:520px){ .banner{height:320px;} .container{max-width:680px;} }
+
+  .content{padding:14px 16px 34px;}
+  .kicker{font-weight:700;color:var(--accent);font-size:12px;letter-spacing:.6px;margin-bottom:6px;}
+  h1{font-family:var(--serif);font-size:22px;margin:6px 0 12px;color:#0b0b0b;line-height:1.16;}
+  .lead{font-style:italic;color:#222;margin-bottom:12px;font-size:15px;}
+  h2{font-family:var(--serif);font-size:16px;margin:14px 0 8px;color:#111;}
+  p{font-size:15px;line-height:1.6;margin:10px 0;color:#222;}
+  blockquote{font-style:italic;color:#333;border-left:3px solid #eee;padding-left:10px;margin:12px 0;background:#fafafa;padding:10px 12px;border-radius:4px;}
+  .footer{font-size:13px;color:var(--muted);margin-top:20px;border-top:1px solid #f0f0f0;padding-top:12px;display:flex;flex-direction:column;gap:8px;}
+  .cta{display:inline-block;margin-top:6px;padding:10px 14px;border-radius:6px;background:var(--accent);color:#fff;text-decoration:none;text-align:center;font-weight:600;}
+  @media(max-width:420px){ .logo img{height:50px;} h1{font-size:18px;} .banner{height:200px;} .lead{font-size:14px} }
+  .note{font-size:13px;color:#666;margin-top:6px;}
+  .meta{font-size:13px;color:var(--muted);margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">
+      <img src="https://pictures.corsematin.com/cdn-cgi/image/width=800,format=auto,quality=80/media/melody/2024/06/24/logo-corse-matin-lead-1719234702_46c2e309ca1565513e309ca15c913ev_.jpg" alt="Corse-Matin">
+    </div>
+    <div class="edition">Édition du Sud Corse<br><span style="font-weight:600">Saint-Cyprien — Événement</span></div>
+  </header>
+
+  <!-- Banner -->
+  <div class="banner-wrap">
+    <img class="banner" alt="Plage de Saint-Cyprien" id="banner"
+         src="https://saintcyprienplage.com/wp-content/uploads/2020/07/shutterstock_326720339-1024x683.jpg">
+    <div class="banner-overlay" aria-hidden="true"></div>
+  </div>
+
+  <main class="content">
+    <div class="kicker">SAINT-CYPRIEN (Lecci)</div>
+    <h1>Vincent fêtera ses 50 ans, le 04 Juillet 2026, sur la plage : une soirée déjà légendaire en préparation</h1>
+
+    <p class="lead">Le 4 juillet 2026, la plage de Saint-Cyprien s’apprête à accueillir un événement pas comme les autres. À l’occasion de ses 50 ans, <strong>Vincent Fontana</strong> organise une fête d’anniversaire exceptionnelle, mêlant convivialité, musique et ambiance bord de mer.</p>
+
+    <h2>Un anniversaire les pieds dans le sable</h2>
+    <p>C’est dans un décor paradisiaque que se tiendra la soirée : sable chaud, mer turquoise et coucher de soleil sur la baie. Le ton est donné — une célébration élégante, festive et authentique, à l’image de son organisateur.</p>
+    <blockquote>« Je voulais réunir mes proches dans un lieu qui me ressemble : simple, vrai et ouvert sur la mer », confie Vincent Fontana, tout sourire, en évoquant les préparatifs de ce rendez-vous hors du commun.</blockquote>
+
+    <h2>Musique, saveurs et ambiance estivale</h2>
+    <p>Le programme s’annonce généreux : <strong>cocktail d’accueil au bord de l’eau</strong>, <strong>dîner raffiné</strong> et <strong>soirée dansante</strong> jusqu’au bout de la nuit. Aux platines, un DJ invité animera la piste. Un feu d’artifice pourrait aussi sublimer la baie à la tombée de la nuit.</p>
+    <p>Le dress code : <em>estivale chic</em> — pieds nus bienvenus, sourire obligatoire.</p>
+
+    <!-- Nouvelle photo sous la section -->
+    <div style="margin:16px 0;">
+      <img src="https://vipbeach.fr/wp-content/uploads/2025/07/P1131931-1024x576.webp" alt="Soirée en bord de mer" style="width:100%;border-radius:8px;">
+    </div>
+
+    <h2>Une soirée déjà très attendue</h2>
+    <p>Les préparatifs mobilisent déjà des partenaires locaux. L’événement, annoncé comme l’un des moments forts de l’été 2026, attire la curiosité dans toute la région.</p>
+    <p>Entre ambiance conviviale et émotion partagée, cette fête s’annonce comme un véritable hymne à la vie. Si l’on en croit les proches de l’organisateur, <strong>le 4 juillet 2026 restera gravé dans les mémoires</strong> comme la nuit où Saint-Cyprien a brillé pour les 50 ans de Vincent.</p>
+
+    <div class="footer">
+      <div>
+        <strong>Infos pratiques</strong>
+        <div class="meta">Date : samedi 4 juillet 2026 — Lieu : plage de Saint-Cyprien (Lecci)</div>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a class="cta" href="https://doodle.com/sign-up-sheet/participate/7d7bfa55-650f-4858-ad50-672cfe48f2d2/select" target="_blank" rel="noopener">RSVP / Informations</a>
+        <a class="cta" href="https://wa.me/?text=Je%20vous%20partage%20l%27invitation%20:%20https://example.com/article-corse-matin.html" target="_blank" rel="noopener">Partager via WhatsApp</a>
+      </div>
+
+      <p class="note">Article rédigé par la rédaction de Corse-Matin, édition du Sud Corse.</p>
+    </div>
+  </main>
+</div>
+</body>
+</html>
+"""
+
+# Sauvegarde du fichier HTML
+file_path = Path("/mnt/data/article-corse-matin-invitation.html")
+file_path.write_text(html, encoding="utf-8")
+
+file_path
